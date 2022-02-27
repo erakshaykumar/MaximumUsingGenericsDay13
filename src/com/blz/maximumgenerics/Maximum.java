@@ -1,44 +1,43 @@
-/*@Purpose :Given 3 string value find the maximum
+/*@Purpose :Taking 3 strings find the maximum
  *Use String object and compareTo method to test the maximum number 
  * @file : Maximum Using Generics
  * @author : Akshay Kumar
  */
 package com.blz.maximumgenerics;
 
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.stream.Stream;
+
 public class Maximum {
 	/*
-	 * @Purpose : Creating Maximum Constructor using Parameterized Value x,y,z Using
-	 * Generics With String And CompareTo
+	 * @Purpose : Creating MaxString Constructor using Steam Function From Util
+	 * Package And Generics With String And CompareTo
 	 * 
 	 * @param : Stream Function With String As Generics
 	 */
-	String x, y, z;
-
-	public Maximum(String x, String y, String z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	public String maxString(Stream<String> stream) {
+		return stream.max(String::compareTo).get();
 	}
 
-	public static String testMaximum(String x, String y, String z) {
-		String max = x;
-		if (y.compareTo(max) > 0)
-			max = y;
-
-		if (z.compareTo(max) > 0)
-			max = z;
-		printMax(x, y, z, max);
-		return max;
-
-	}
-
-	public static void printMax(String x, String y, String z, String max) {
-		System.out.printf("The maximum from string of %s , %s and %s is:- %s\n", x, y, z, max);
-	}
-
+	/*
+	 * @Purpose :Taking 3 Inputs From User Getting Maximum Value Among Three
+	 */
 	public static void main(String[] args) {
-		System.out.println("Welcome to Check maximum of three variables");
-		String x = "Apple", y = "Peach", z = "Banana";
-		Maximum.testMaximum(x, y, z);
+
+		Maximum maximum = new Maximum();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Input 3 String Values :- ");
+		System.out.print("String 1: ");
+		String string1 = sc.next();
+		System.out.print("String 2: ");
+		String string2 = sc.next();
+		System.out.print("String 3: ");
+		String string3 = sc.next();
+
+		String num_arr[] = new String[] { string1, string2, string3 };
+		Stream<String> stream = Arrays.stream(num_arr);
+		System.out.println("Maximum String Among These Values = " + maximum.maxString(stream));
+		sc.close();
 	}
 }
