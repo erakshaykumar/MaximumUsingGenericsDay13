@@ -1,43 +1,44 @@
-/*@Purpose :Taking 3 floating point value find the maximum
- *Use float object and compareTo method to test the maximum number 
+/*@Purpose :Given 3 string value find the maximum
+ *Use String object and compareTo method to test the maximum number 
  * @file : Maximum Using Generics
  * @author : Akshay Kumar
  */
 package com.blz.maximumgenerics;
 
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.stream.Stream;
-
 public class Maximum {
 	/*
-	 * @Purpose : Creating MaxNumber Constructor using Steam Function From Util
-	 * Package And Generics With Float And CompareTo
+	 * @Purpose : Creating Maximum Constructor using Parameterized Value x,y,z Using
+	 * Generics With String And CompareTo
 	 * 
-	 * @param : Stream Function With Float As Generics
+	 * @param : Stream Function With String As Generics
 	 */
-	public Float maxFloat(Stream<Float> stream) {
-		return stream.max(Float::compareTo).get();
+	String x, y, z;
+
+	public Maximum(String x, String y, String z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
 
-	/*
-	 * @Purpose :Taking 3 Inputs From User Getting Maximum Value Among Three
-	 */
+	public static String testMaximum(String x, String y, String z) {
+		String max = x;
+		if (y.compareTo(max) > 0)
+			max = y;
+
+		if (z.compareTo(max) > 0)
+			max = z;
+		printMax(x, y, z, max);
+		return max;
+
+	}
+
+	public static void printMax(String x, String y, String z, String max) {
+		System.out.printf("The maximum from string of %s , %s and %s is:- %s\n", x, y, z, max);
+	}
+
 	public static void main(String[] args) {
-
-		Maximum maximum = new Maximum();
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Input 3 Integer Values :- ");
-		System.out.print("Enter Float 1: ");
-		float num1 = sc.nextFloat();
-		System.out.print("Enter Float 2: ");
-		float num2 = sc.nextFloat();
-		System.out.print("Enter Float 3: ");
-		float num3 = sc.nextFloat();
-
-		Float fl_arr[] = new Float[] { (float) num1, (float) num2, (float) num3 };
-		Stream<Float> fl_stream = Arrays.stream(fl_arr);
-		System.out.println("Maximum floating Point Values Among These Values= " + maximum.maxFloat(fl_stream));
-		sc.close();
+		System.out.println("Welcome to Check maximum of three variables");
+		String x = "Apple", y = "Peach", z = "Banana";
+		Maximum.testMaximum(x, y, z);
 	}
 }
